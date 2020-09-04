@@ -1,0 +1,40 @@
+server:
+  port: 8003
+
+spring:
+  #  devtools:
+  #    livereload:
+  #      port: 35739
+  #35729
+  application:
+    name: jpa
+  profiles:
+    active: dev
+
+url: www.bing.com
+---
+#开发环境
+spring:
+  profiles: dev
+  datasource:
+    #爆红不要紧张，没有问题的只是编辑工具不能识别造成的，本身是正确的
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sys?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: admin
+    hikari:
+      max-lifetime: 1765000
+      maximum-pool-size: 15
+#    dbcp2:
+#      min-idle: 5                                           # 数据库连接池的最小维持连接数
+#      initial-size: 5                                       # 初始化连接数
+#      max-total: 5                                          # 最大连接数
+#      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    database: mysql
+

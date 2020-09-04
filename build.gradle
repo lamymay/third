@@ -1,0 +1,73 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.arc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'mysql:mysql-connector-java'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+//    implementation 'com.arc:core:0.0.1-SNAPSHOT'
+//    implementation 'com.arc:util:0.0.1-SNAPSHOT'
+//    implementation 'com.arc:entity:0.0.1-SNAPSHOT'
+
+    //暂时不用 后续可能会引入的依赖
+    //implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    //implementation 'org.springframework.boot:spring-boot-starter-mail'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//==========================================================
+//1.在项目根目录(与src同级目录)创建libs文件夹，并将jar包拷贝进去。
+//2.在build.gradle文件中的dependencies中添加如下脚本：
+//compile fileTree(dir: 'libs', include: [ '*.jar'])
+//3.运行gradle build即可将jar文件打到工程Jar包中。
+//
+//作者：熊妈妈宝典
+//链接：https://www.jianshu.com/p/128b27ae40d8
+//来源：简书
+//著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+//==========================================================
+//compile group: 'com.github.xxx.util', name: 'xxx-util', version: '1.0-SNAPSHOT'
+
+
+
+
